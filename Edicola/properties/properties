@@ -1,0 +1,16 @@
+payment.class=it.unipv.po.edicola.model.market.payment.Sell
+
+newsstand.generate.class=it.unipv.po.edicola.model.shop.factory.NewsstandFactory
+
+coupon.mapper.class=
+accounting.mapper.class=
+inventory.mapper.class=it.unipv.po.edicola.mapper.inventory.DBInventoryMapper
+products.mapper.class=it.unipv.po.edicola.mapper.products.DBProductsMapper
+member.mapper.class=it.unipv.po.edicola.mapper.member.DBMemberMapper
+supplier.mapper.class=
+
+database.schema.name=newsstand
+
+DAILY=giornaliero
+MONTHLY=mensile
+YEARLY=annuale
