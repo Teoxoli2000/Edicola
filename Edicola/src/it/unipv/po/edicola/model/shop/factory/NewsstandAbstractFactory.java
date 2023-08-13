@@ -4,6 +4,10 @@ import java.util.Properties;
 
 import it.unipv.po.edicola.util.properties.PropertiesSingleton;
 
+/**
+ * NewsstandAbstractFactory classe che implementa il pattern abstract factory,
+ * implementa il pattern attraverso una java reflection
+ */
 public class NewsstandAbstractFactory {
 	private static INewsstandFactory newsstand;
 
