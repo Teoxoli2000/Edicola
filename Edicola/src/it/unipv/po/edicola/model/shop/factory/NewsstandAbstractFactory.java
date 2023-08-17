@@ -13,7 +13,7 @@ public class NewsstandAbstractFactory {
 
 	private static String NEWSSTAND_PROPERTYNAME = "newsstand.generate.class";
 
-	public static INewsstandFactory getNewsstand() {
+	public static INewsstandFactory getNewsstandFactory() {
 		String categoryClassName;
 
 		if (newsstand == null) {

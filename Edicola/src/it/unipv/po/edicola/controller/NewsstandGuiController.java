@@ -42,7 +42,7 @@ public class NewsstandGuiController {
 	}
 	
 	public static void main(String[] args) {
-		Newsstand news = (Newsstand) NewsstandAbstractFactory.getNewsstand().createNewsstand();
+		Newsstand news = (Newsstand) NewsstandAbstractFactory.getNewsstandFactory().createNewsstand();
 		NewsstandGui window = new NewsstandGui();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

@@ -1,15 +1,19 @@
 package it.unipv.po.edicola.util.database;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import it.unipv.po.edicola.util.properties.PropertiesSingleton;
 
 /**
  * La classe DBConnection gestisce la connessione con il database dell'edicola
  * 
  * */
 public class DBConnection {
-	
+	private static String PASSWORD_PROPERTYNAME = "database.connection.password";
 	public DBConnection() {
 		super();
 	}
@@ -34,7 +38,14 @@ public class DBConnection {
 		String DbDriver = "com.mysql.cj.jdbc.Driver";
 		String DbURL = "jdbc:mysql://localhost:3306/" + schema;
 		String usr = "root";
-		String password = "R@panello1969";
+		String password;
+		
+		try {
+			password = PropertiesSingleton.getInstance().getProperty(PASSWORD_PROPERTYNAME);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 
 		if (isOpen(c)) 
 			closeConnection(c);

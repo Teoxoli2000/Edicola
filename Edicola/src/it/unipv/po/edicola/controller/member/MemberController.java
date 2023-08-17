@@ -4,10 +4,13 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import it.unipv.po.edicola.mapper.MapperFacade;
 import it.unipv.po.edicola.model.exception.MemberNotFoundException;
 import it.unipv.po.edicola.model.member.IMember;
 import it.unipv.po.edicola.model.member.MemberBook;
+import it.unipv.po.edicola.model.member.excpetion.AddEmailMemberException;
+import it.unipv.po.edicola.model.member.excpetion.AddNullMemberException;
+import it.unipv.po.edicola.model.member.excpetion.RemoveMemberException;
 import it.unipv.po.edicola.model.member.strategy.EMailMember;
 import it.unipv.po.edicola.model.member.strategy.NullMember;
 import it.unipv.po.edicola.view.frame.JFrameMember;
@@ -56,8 +59,6 @@ public class MemberController {
 						}
 				}
 				
-				
-				
 				try {
 					if(!searchByName.isEmpty()) {
 						for (IMember m: book.searchMember(searchByName)) {
@@ -90,7 +91,7 @@ public class MemberController {
 				view.getTextArea().setText("");
 				
 				String name = view.getTextName().getText();
-				Integer id = generateID();;
+				Integer id = generateID();
 				String email = view.getTextEmail().getText();
 				
 			
@@ -109,13 +110,25 @@ public class MemberController {
 				view.getTextArea().append("Id del nuovo iscritto è " + id.toString());
 				view.getTextArea().append("\n");
 
+				
 				if (!email.isEmpty()) {
 					EMailMember tempM = new EMailMember(id, name, email);
-					book.addMember(tempM, email);
+					try {
+						book.addMember(tempM, email);
+					} catch (AddNullMemberException e1) {
+						MapperFacade.getInstance().addMember(tempM);
+					} catch (AddEmailMemberException e1) {
+						MapperFacade.getInstance().addEmailMember(tempM, email);
+					}
 					return;
 				}
 
-				book.addMember(new NullMember(id, name));
+				NullMember tempM = new NullMember(id, name);
+				try {
+					book.addMember(tempM);
+				} catch (AddNullMemberException e1) {
+					MapperFacade.getInstance().addMember(tempM);
+				}
 			}
 		}
 		
@@ -158,10 +171,13 @@ public class MemberController {
 					return;
 				}
 
-				book.removeMember(remove);
+				try {
+					book.removeMember(remove);
+				} catch (RemoveMemberException e1) {
+					MapperFacade.getInstance().removeMember(remove);
+				}
 			}
 		}
-		
 				);
 		
 	}
