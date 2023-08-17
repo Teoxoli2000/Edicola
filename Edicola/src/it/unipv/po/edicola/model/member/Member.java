@@ -42,5 +42,4 @@ public abstract class Member implements IMember {
 		this.name = name;
 	}
 	
-	
 }

@@ -5,17 +5,14 @@ import it.unipv.po.edicola.model.member.MemberBook;
 import it.unipv.po.edicola.model.shop.INewsstand;
 import it.unipv.po.edicola.model.shop.Newsstand;
 
-
 /**
  * NewsstandFactory serve per creare un istanza di Newsstand tramite il mapper
  */
 public class NewsstandFactory implements INewsstandFactory {
 
 	public NewsstandFactory() {
-		super();
-		
+		super();	
 	}
-
 	
 	/**
 	 * metodo che crea newwstand grazie al mapper
@@ -31,5 +28,6 @@ public class NewsstandFactory implements INewsstandFactory {
 		
 		return result;
 	}
-
+	
+	
 }

@@ -10,6 +10,7 @@ member.mapper.class=it.unipv.po.edicola.mapper.member.DBMemberMapper
 supplier.mapper.class=
 
 database.schema.name=newsstand
+database.connection.password=R@panello1969
 
 DAILY=giornaliero
 MONTHLY=mensile

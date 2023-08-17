@@ -3,9 +3,11 @@ package it.unipv.po.edicola.model.member;
 import java.util.Collection;
 import java.util.HashSet;
 
-import it.unipv.po.edicola.mapper.MapperFacade;
 import it.unipv.po.edicola.model.exception.MemberNotFoundException;
 import it.unipv.po.edicola.model.market.coupon.ICoupon;
+import it.unipv.po.edicola.model.member.excpetion.AddEmailMemberException;
+import it.unipv.po.edicola.model.member.excpetion.AddNullMemberException;
+import it.unipv.po.edicola.model.member.excpetion.RemoveMemberException;
 
 public class MemberBook {
 	private HashSet<IMember> members;
@@ -74,27 +76,30 @@ public class MemberBook {
 	/**
 	 * @param c the member to add
 	 */
-	public void addMember(IMember c) {
+	public void addMember(IMember c) throws AddNullMemberException{
 		members.add(c);
-		MapperFacade.getInstance().addMember(c);
+		throw new AddNullMemberException();
+		
 	}
 
 	
-	public void addMember(IMember c, String email) {
+	public void addMember(IMember c, String email) 
+			throws AddNullMemberException, AddEmailMemberException {
 		if (email == null) {
 			addMember(c);
 			return;
 			}
 		
 		members.add(c);
-		MapperFacade.getInstance().addEmailMember(c, email);
+		throw new AddEmailMemberException();
+		
 	}
 	
 	/**
 	 * @param c the member to remove
 	 */
-	public void removeMember(IMember c) {
+	public void removeMember(IMember c) throws RemoveMemberException{
 		members.remove(c);
-		MapperFacade.getInstance().removeMember(c);
+		throw new RemoveMemberException();
 	}
 }

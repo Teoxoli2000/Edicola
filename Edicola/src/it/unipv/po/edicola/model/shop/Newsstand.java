@@ -40,8 +40,20 @@ public class Newsstand implements INewsstand {
 	 * @throws nel caso in cui non è presente il prodotto cercato
 	 */
 	public HashSet<ILocation> searchProductInStore(Integer id) throws ProductNotFoundException {
-		return null;
-		//TODO
+		HashSet<ILocation> result = new HashSet<ILocation>();
+		
+		for(ILocation l: wards) {
+			for(IProduct p: l.getProducts().keySet()) {
+				if(p.getIdProduct() == id)
+					result.add(l);
+			}
+		}
+		
+		if (result.isEmpty()) {
+			throw new ProductNotFoundException();
+		}
+		
+		return result;
 	}
 	
 	/**
@@ -52,8 +64,20 @@ public class Newsstand implements INewsstand {
 	 * @throws nel caso in cui non è presente il prodotto cercato
 	 */
 	public Hashtable<ILocation, IProduct> searchProductInStore(String nameProduct) throws ProductNotFoundException {
-		return null;
-		//TODO
+		Hashtable<ILocation,IProduct> result = new Hashtable<ILocation,IProduct>();
+		
+		for(ILocation l: wards) {
+			for(IProduct p: l.getProducts().keySet()) {
+				if(p.getName() == nameProduct)
+					result.put(l, p);
+			}
+		}
+		
+		if (result.isEmpty()) {
+			throw new ProductNotFoundException();
+		}
+		
+		return result;
 	}
 	
 	/**
