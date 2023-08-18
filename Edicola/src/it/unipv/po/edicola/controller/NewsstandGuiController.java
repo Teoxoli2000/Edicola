@@ -30,6 +30,7 @@ public class NewsstandGuiController {
 							JFrameMember frame = new JFrameMember();
 							frame.setVisible(true);
 							
+							@SuppressWarnings("unused")
 							MemberController controller = new MemberController(model.getMemberBook(), frame);
 							
 						} catch (Exception e) {
@@ -53,6 +54,7 @@ public class NewsstandGuiController {
 				}
 			}
 		});
+		@SuppressWarnings("unused")
 		NewsstandGuiController controller = new NewsstandGuiController(window, news);
 	}
 }
