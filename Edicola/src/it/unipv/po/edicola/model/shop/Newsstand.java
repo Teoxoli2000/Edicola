@@ -16,7 +16,6 @@ import it.unipv.po.edicola.model.supplier.SupplierBook;
 public class Newsstand implements INewsstand {
 	private HashSet<ILocation> wards; 	// ambienti 
 	private ILocation inventory;		// inventario
-	private ILocation mainLocation;		// l'ambiente principale
 	private IAccounting accounting; 	// contabilità
 	private SupplierBook supplierBook; 	// rubrica fornitori
 	private MemberBook memberBook; 		// rubrica membri
@@ -107,25 +106,6 @@ public class Newsstand implements INewsstand {
 		}
 		inventory.getProducts().putAll(temp.getProducts());
 		return inventory;
-	}
-	
-	/**
-	 * @return restituisce l'ambiente principale
-	 */
-	@Override
-	public ILocation getMainLocation() {
-		return mainLocation;
-	}
-	
-	/**
-	 * @param mainLocation imposta l'ambiente principale
-	 */
-	@Override
-	public void setMainLocation(ILocation mainLocation) {
-		for(ILocation loc: wards) {
-			if(mainLocation.getName().equalsIgnoreCase(loc.getName()))
-				this.mainLocation = loc;
-		}
 	}
 	
 	/**

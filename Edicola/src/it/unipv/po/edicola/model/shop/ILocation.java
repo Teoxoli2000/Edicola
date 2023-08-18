@@ -11,8 +11,7 @@ public interface ILocation {
 	
 	public Hashtable<IProduct, Integer> getProducts();
 	public Boolean addProduct(IProduct product, Integer quantity);
-	public Boolean removeProduct(IProduct product, Integer quantity) 
-			throws ProductNotFoundException;
+	public Boolean removeProduct(IProduct product, Integer quantity);
 	
 	public void moveProductTo(ILocation destination, IProduct product, Integer quantity) 
 			throws ProductNotFoundException;

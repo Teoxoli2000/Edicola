@@ -21,9 +21,6 @@ public interface INewsstand {
 	
 	public HashSet<ILocation> getWards();
 	public void setWards(HashSet<ILocation> wards);
-
-	public ILocation getMainLocation();
-	public void setMainLocation(ILocation mainLocation);
 	
 	public SupplierBook getSupplierBook();
 	public void setSupplierBook(SupplierBook book);

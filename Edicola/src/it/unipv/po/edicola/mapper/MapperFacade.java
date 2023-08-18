@@ -131,9 +131,6 @@ public class MapperFacade
 	public Boolean removeProductFromInventory(ILocation location, IProduct product) {
 		return MapperFactory.getInventoryMapper().removeProductFromInventory(location, product);
 	}
-	public ILocation getMainLocation() {
-		return MapperFactory.getInventoryMapper().getMainLocation();
-	}
 
 	@Override
 	public Boolean addMember(IMember member) {

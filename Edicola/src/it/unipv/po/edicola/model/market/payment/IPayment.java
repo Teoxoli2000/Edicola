@@ -2,14 +2,15 @@ package it.unipv.po.edicola.model.market.payment;
 
 import java.time.LocalDateTime;
 
-import it.unipv.po.edicola.model.exception.MainLocationNotFoundException;
+import it.unipv.po.edicola.model.exception.LocationNotFoundException;
+import it.unipv.po.edicola.model.exception.ProductNotFoundException;
 import it.unipv.po.edicola.model.shop.ILocation;
 import it.unipv.po.edicola.model.shop.INewsstand;
 
 
 public interface IPayment {
-	public void changeNewsstandInventory(INewsstand newsstand) 
-			throws MainLocationNotFoundException;
+	public void changeNewsstandInventory(INewsstand newsstand, ILocation location) 
+			throws LocationNotFoundException, ProductNotFoundException;
 	public void changeNewsstandAccounting(INewsstand newsstand);
 
 	public Double calculateTotal();

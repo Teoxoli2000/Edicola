@@ -16,9 +16,14 @@ public interface IAccounting {
 	public void addEntrance(IPayment p);
 	public void removeEntrance(IPayment p);
 	
+	public void addRefund(IPayment p);
+	public void removeRefund(IPayment p);
+	
 	public HashSet<IPayment> getEntrances();
 	public void setEntrances(HashSet<IPayment> entrances);
 	public HashSet<IPayment> getExits();
 	public void setExits(HashSet<IPayment> exits);
+	public HashSet<IPayment> getRefunds();
+	public void setRefunds(HashSet<IPayment> refunds);
 
 }

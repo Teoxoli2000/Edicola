@@ -27,7 +27,8 @@ public class Storage implements ILocation {
 	 * @throws ProductNotFoundException
 	 */
 	@Override
-	public void moveProductTo(ILocation destination, IProduct product, Integer quantity) throws ProductNotFoundException {
+	public void moveProductTo(ILocation destination, IProduct product, Integer quantity) 
+			throws ProductNotFoundException, IllegalArgumentException {
 		try {
 			if (quantity <= products.get(product)) {
 				this.removeProduct(product, quantity);
@@ -61,9 +62,9 @@ public class Storage implements ILocation {
 	 * @throws ProductNotFoundException
 	 */
 	@Override
-	public Boolean removeProduct(IProduct product, Integer quantity) throws ProductNotFoundException {
+	public Boolean removeProduct(IProduct product, Integer quantity) {
 		if (!products.containsKey(product))
-			throw new ProductNotFoundException("Arguments not valid: " + product.getName() + " not found in products");
+			return false;
 		if (products.get(product) > quantity) {
 			products.put(product, products.get(product) - quantity);
 			return true;

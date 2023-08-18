@@ -16,5 +16,4 @@ public interface IInventoryMapper {
 	public Boolean addProductInInventory(ILocation location, IProduct product, Integer quantity);
 	public Boolean removeProductFromInventory(ILocation location, IProduct product);
 	
-	public ILocation getMainLocation();
 }
