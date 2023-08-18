@@ -102,4 +102,15 @@ public class MemberBook {
 		members.remove(c);
 		throw new RemoveMemberException();
 	}
+	
+	public Integer generateID() {
+		Integer result = (int) Math.round(Math.random() * 10000);
+		
+		for(IMember m: getMembers()) {
+			if(m.getMemberId() == result) {
+				return generateID();
+			}
+		}
+		return result;
+	}
 }

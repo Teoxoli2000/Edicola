@@ -198,21 +198,4 @@ public class DBInventoryMapper implements IInventoryMapper {
 		return result;
 	}
 
-	@Override
-	public ILocation getMainLocation() {
-		Storage result = null;
-		try {
-			Statement statement = connection.createStatement();
-			String query = 
-					"SELECT *"
-					+ " FROM storages"
-					+ " WHERE priority = (SELECT max(priority) FROM storages)";
-			ResultSet rs = statement.executeQuery(query);
-			rs.next();
-			result = new Storage(rs.getString("storage_id"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
 }

@@ -23,7 +23,6 @@ public class NewsstandFactory implements INewsstandFactory {
 		MapperFacade mapper = MapperFacade.getInstance();
 		
 		result.setWards(mapper.getInventory());
-		result.setMainLocation(mapper.getMainLocation());
 		result.setMemberBook(new MemberBook(mapper.getAllMembers()));
 		
 		return result;

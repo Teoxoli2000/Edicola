@@ -9,11 +9,13 @@ import it.unipv.po.edicola.model.market.payment.IPayment;
 public class Accounting implements IAccounting{
 	private HashSet<IPayment> entrances;
 	private HashSet<IPayment> exits;
+	private HashSet<IPayment> refunds;
 	
 	public Accounting() {
 		super();
 		this.entrances = new HashSet<IPayment>();
 		this.exits = new HashSet<IPayment>();
+		this.refunds = new HashSet<IPayment>();
 	}
 	
 	@Override
@@ -58,6 +60,16 @@ public class Accounting implements IAccounting{
 	}
 	
 	@Override
+	public void addRefund(IPayment p) {
+		refunds.add(p);
+	}
+	
+	@Override
+	public void removeRefund(IPayment p) {
+		refunds.remove(p);
+	}
+	
+	@Override
 	public HashSet<IPayment> getEntrances() {
 		return entrances;
 	}
@@ -75,6 +87,17 @@ public class Accounting implements IAccounting{
 	@Override
 	public void setExits(HashSet<IPayment> exits) {
 		this.exits = exits;
+	}
+
+
+	@Override
+	public HashSet<IPayment> getRefunds() {
+		return refunds;
+	}
+
+	@Override
+	public void setRefunds(HashSet<IPayment> refunds) {
+		this.refunds = refunds;
 	}
 	
 }

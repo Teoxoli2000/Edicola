@@ -1,7 +1,6 @@
 package it.unipv.po.edicola.model.market.coupon.strategy;
 
 import it.unipv.po.edicola.model.exception.CouponNotValidException;
-import it.unipv.po.edicola.model.exception.ProductNotFoundException;
 import it.unipv.po.edicola.model.market.coupon.Coupon;
 import it.unipv.po.edicola.model.market.payment.IPayment;
 import it.unipv.po.edicola.model.product.IProduct;
@@ -36,11 +35,8 @@ public class SingleProductCoupon extends Coupon {
 		IProduct temp = new Product(valid.getPrize(), valid.getIdProduct(), valid.getName());
 		temp.setPrize(getDiscount() * valid.getPrize());
 		
-		try {
-			shoppingCart.removeProduct(valid, 1);
-		} catch (ProductNotFoundException e) {
+		if (!shoppingCart.removeProduct(valid, 1))
 			throw new CouponNotValidException();
-		}
 		
 		shoppingCart.addProduct(temp, 1);
 	}

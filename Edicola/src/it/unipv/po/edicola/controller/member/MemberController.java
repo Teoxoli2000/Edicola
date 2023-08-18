@@ -91,7 +91,7 @@ public class MemberController {
 				view.getTextArea().setText("");
 				
 				String name = view.getTextName().getText();
-				Integer id = generateID();
+				Integer id = book.generateID();
 				String email = view.getTextEmail().getText();
 				
 			
@@ -180,16 +180,6 @@ public class MemberController {
 		}
 				);
 		
-	}
-	
-	private Integer generateID() {
-		Integer result = (int) Math.round(Math.random() * 10000);
-		for(IMember m: book.getMembers()) {
-			if(m.getMemberId() == result) {
-				return generateID();
-			}
-		}
-		return result;
 	}
 }
 
