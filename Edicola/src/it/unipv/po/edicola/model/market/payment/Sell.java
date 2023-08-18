@@ -13,7 +13,6 @@ public class Sell extends Payment {
 		super(paymentId, shoppingCart);
 	}
 
-
 	@Override
 	public void changeNewsstandInventory(INewsstand newsstand) throws MainLocationNotFoundException {
 		ILocation mainLocation = newsstand.getMainLocation();

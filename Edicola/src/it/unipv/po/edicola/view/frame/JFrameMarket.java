@@ -4,19 +4,19 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import it.unipv.po.edicola.view.panel.JPanelRefound;
+import it.unipv.po.edicola.view.panel.JPanelMarket;
 
-public class JFrameRefound extends JFrame {
-	private static final long serialVersionUID = -5225492347445480118L;
+public class JFrameMarket extends JFrame {
+	private static final long serialVersionUID = -3871936880964410879L;
 	private JPanel contentPane;
 
 	/**
 	 * Create the frame.
 	 */
-	public JFrameRefound() {
+	public JFrameMarket() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanelRefound();
+		setBounds(100, 100, 561, 364);
+		contentPane = new JPanelMarket();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
