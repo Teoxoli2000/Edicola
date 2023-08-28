@@ -10,9 +10,10 @@ public interface ILocation {
 	public void setName(String name);
 	
 	public Hashtable<IProduct, Integer> getProducts();
+	public void setProducts(Hashtable<IProduct, Integer> products);
 	public Boolean addProduct(IProduct product, Integer quantity);
 	public Boolean removeProduct(IProduct product, Integer quantity);
 	
-	public void moveProductTo(ILocation destination, IProduct product, Integer quantity) 
+	public void moveProduct(ILocation destination, IProduct product, Integer quantity) 
 			throws ProductNotFoundException;
 }

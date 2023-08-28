@@ -1,4 +1,4 @@
-package it.unipv.po.edicola.model.accounting;
+package it.unipv.po.edicola.model.market;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -39,6 +39,29 @@ public class Accounting implements IAccounting{
 		return getTransactions(today);
 	}
 	
+	@Override
+	public Integer genereteIdPayment() {
+		Integer result = (int) Math.round(Math.random() * 10000);
+		
+		for(IPayment p: entrances) {
+			if(p.getPaymentId()==result) {
+				return genereteIdPayment();
+			}
+		}
+		for(IPayment p: exits) {
+			if(p.getPaymentId()==result) {
+				return genereteIdPayment();
+			}
+		}
+		for(IPayment p: refunds) {
+			if(p.getPaymentId()==result) {
+				return genereteIdPayment();
+			}
+		}
+		
+		return result;
+	}
+
 	@Override
 	public void addExit(IPayment p) {
 		exits.add(p);
@@ -99,5 +122,7 @@ public class Accounting implements IAccounting{
 	public void setRefunds(HashSet<IPayment> refunds) {
 		this.refunds = refunds;
 	}
+
+	
 	
 }

@@ -41,16 +41,16 @@ public class MapperFacade
 		return MapperFactory.getCouponMapper().removeValidProductsToCoupon(c, product);
 	}
 	
-	public ICoupon getSingleUseCoupon(String code) {
-		return MapperFactory.getCouponMapper().getSingleUseCoupon(code);
+	public Boolean isNotUsedCoupon(String code) {
+		return MapperFactory.getCouponMapper().isNotUsedCoupon(code);
 	}
 	
-	public Boolean addSingleUseCoupon(ICoupon c, String code) {
-		return MapperFactory.getCouponMapper().addSingleUseCoupon(c, code);
+	public Boolean addCirculationCoupon(ICoupon c, String code) {
+		return MapperFactory.getCouponMapper().addCirculationCoupon(c, code);
 	}
 	
-	public Boolean removeSingleUseCoupon(String code) {
-		return MapperFactory.getCouponMapper().removeSingleUseCoupon(code);
+	public Boolean removeUsedCoupon(String code) {
+		return MapperFactory.getCouponMapper().removeUsedCoupon(code);
 	}
 	
 	public Boolean addCoupun(ICoupon c) {

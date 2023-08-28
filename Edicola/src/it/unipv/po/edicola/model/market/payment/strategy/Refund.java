@@ -1,12 +1,11 @@
-package it.unipv.po.edicola.model.market.payment;
+package it.unipv.po.edicola.model.market.payment.strategy;
 
-import it.unipv.po.edicola.model.shop.ILocation;
 import it.unipv.po.edicola.model.shop.INewsstand;
 
 public class Refund extends Entrance {
 	
-	public Refund(Integer paymentId, ILocation shoppingCart) {
-		super(paymentId, shoppingCart);
+	public Refund() {
+		super();
 	}
 
 	@Override

@@ -26,6 +26,7 @@ public abstract class Coupon implements ICoupon {
 		this.discount = discount;
 	}
 
+
 	@Override
 	public void useCoupon(IPayment payment) throws CouponNotValidException {
 		setPayment(payment);

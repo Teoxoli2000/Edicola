@@ -31,15 +31,14 @@ public class SingleProductCoupon extends Coupon {
 		
 		if(!isValid())
 			throw new CouponNotValidException();
-		
+
 		IProduct temp = new Product(valid.getPrize(), valid.getIdProduct(), valid.getName());
 		temp.setPrize(getDiscount() * valid.getPrize());
-		
-		if (!shoppingCart.removeProduct(valid, 1))
+
+		if(!shoppingCart.removeProduct(valid, 1))
 			throw new CouponNotValidException();
-		
+
 		shoppingCart.addProduct(temp, 1);
 	}
-
 
 }

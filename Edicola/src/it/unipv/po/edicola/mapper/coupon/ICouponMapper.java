@@ -13,9 +13,9 @@ public interface ICouponMapper {
 	public Boolean addValidProductsToCoupon(ICoupon c, HashSet<IProduct> product);
 	public Boolean removeValidProductsToCoupon(ICoupon c, HashSet<IProduct> product);
 	
-	public ICoupon getSingleUseCoupon(String code);
-	public Boolean addSingleUseCoupon(ICoupon c, String code);
-	public Boolean removeSingleUseCoupon(String code);
+	public Boolean isNotUsedCoupon(String code);
+	public Boolean addCirculationCoupon(ICoupon c, String code);
+	public Boolean removeUsedCoupon(String code);
 		
 	public Boolean addCoupun(ICoupon c);
 	public Boolean addCoupun(ICoupon c, LocalDate expire, LocalDate begin);

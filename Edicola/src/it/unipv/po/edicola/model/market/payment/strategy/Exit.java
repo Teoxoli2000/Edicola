@@ -1,17 +1,16 @@
-package it.unipv.po.edicola.model.market.payment;
+package it.unipv.po.edicola.model.market.payment.strategy;
 
 import it.unipv.po.edicola.model.exception.LocationNotFoundException;
+import it.unipv.po.edicola.model.market.payment.Payment;
 import it.unipv.po.edicola.model.product.IProduct;
 import it.unipv.po.edicola.model.shop.ILocation;
 import it.unipv.po.edicola.model.shop.INewsstand;
 
 public class Exit extends Payment {
-	
-	public Exit(Integer paymentId, ILocation shoppingCart) {
-		super(paymentId, shoppingCart);
+	public Exit() {
+		super();
 	}
 
-	@Override
 	public void changeNewsstandInventory(INewsstand newsstand, ILocation location) 
 			throws LocationNotFoundException {
 		
@@ -27,5 +26,11 @@ public class Exit extends Payment {
 	@Override
 	public void changeNewsstandAccounting(INewsstand newsstand) {
 		newsstand.getAccounting().addExit(this);
+	}
+
+	@Override
+	public void changeNewsstandInventory(INewsstand old, INewsstand now) {
+		// TODO Auto-generated method stub
+		
 	}
 }

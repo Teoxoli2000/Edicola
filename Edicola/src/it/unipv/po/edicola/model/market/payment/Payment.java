@@ -15,12 +15,8 @@ public abstract class Payment implements IPayment {
 	
 	private ILocation shoppingCart;
 	
-	public Payment(Integer paymentId, ILocation shoppingCart) {
-		super();
-		this.paymentId = paymentId;
-		this.shoppingCart = shoppingCart;
+	public Payment() {
 		this.dateTime = LocalDateTime.now();
-		this.total = calculateTotal();
 	}
 
 	public Double calculateTotal() {

@@ -6,8 +6,6 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.JLabel;
 import javax.swing.JSpinner;
 import java.awt.TextArea;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import java.awt.Color;
@@ -17,43 +15,36 @@ import javax.swing.JComboBox;
 import javax.swing.SwingConstants;
 
 
-public class JPanelMarket extends JPanel {
+public class JPanelBuy extends JPanel {
 	
 	private static final long serialVersionUID = -4758440369172888429L;
 	private JTextField productTxtField;
-	private JTextField couponTxtField;
 	private JSpinner nProductSpin;
 	private TextArea shopingCartTxt;
 	private JButton addProductBtn;
 	private JButton doTransactionBtn;
-	private JButton addCouponBtn;
 	private JLabel totalTxt;
-	private JLabel couponInfTxt;
-	private JRadioButton sellRBtn;
-	private JRadioButton refundRBtn;
 	private JComboBox<String> prodComboBox;
 	private JComboBox<String> locComboBox;
 	private JComboBox<String> dateComboBox;
 	private JButton searchBtnS;
-	private JButton cancelBtn;
-
+	private JButton btnAnnulla;
+	private JLabel lblNewLabel_3_2;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JLabel lblNewLabel_3_3;
 
 
 	/**
 	 * Create the panel.
 	 */
-	public JPanelMarket() {
+	public JPanelBuy() {
 		setLayout(null);
 		
 		productTxtField = new JTextField();
 		productTxtField.setBounds(135, 8, 287, 20);
 		add(productTxtField);
 		productTxtField.setColumns(10);
-		
-		couponTxtField = new JTextField();
-		couponTxtField.setColumns(10);
-		couponTxtField.setBounds(100, 314, 112, 20);
-		add(couponTxtField);
 		
 		JLabel lblNewLabel = new JLabel("Cerca prodotti");
 		lblNewLabel.setBounds(23, 11, 171, 14);
@@ -69,54 +60,28 @@ public class JPanelMarket extends JPanel {
 		add(lblQt);
 		
 		JLabel lblNewLabel_1 = new JLabel("Carrello");
-		lblNewLabel_1.setBounds(23, 131, 46, 14);
+		lblNewLabel_1.setBounds(23, 162, 46, 14);
 		add(lblNewLabel_1);
 		
 		shopingCartTxt = new TextArea();
-		shopingCartTxt.setBounds(23, 151, 498, 160);
+		shopingCartTxt.setBounds(23, 182, 510, 160);
 		add(shopingCartTxt);
 		
 		doTransactionBtn = new JButton("Fai la transazione");
-		doTransactionBtn.setBounds(367, 336, 146, 23);
+		doTransactionBtn.setBounds(231, 358, 146, 23);
 		add(doTransactionBtn);
 		
 		addProductBtn = new JButton("+");
-		addProductBtn.setBounds(488, 39, 45, 23);
+		addProductBtn.setBounds(432, 135, 101, 23);
 		add(addProductBtn);
-
-		addCouponBtn = new JButton("Usa");
-		addCouponBtn.setBounds(123, 336, 89, 23);
-		add(addCouponBtn);
 		
 		JLabel lblNewLabel_2 = new JLabel("Totale");
-		lblNewLabel_2.setBounds(367, 317, 46, 14);
+		lblNewLabel_2.setBounds(23, 362, 46, 14);
 		add(lblNewLabel_2);
 		
 		totalTxt = new JLabel("0");
-		totalTxt.setBounds(405, 317, 89, 14);
+		totalTxt.setBounds(79, 362, 89, 14);
 		add(totalTxt);
-		
-		JLabel lblNewLabel_4 = new JLabel("Codice Sconto");
-		lblNewLabel_4.setBounds(23, 317, 78, 14);
-		add(lblNewLabel_4);
-		
-		couponInfTxt = new JLabel("Nessun codice inserito");
-		couponInfTxt.setForeground(new Color(255, 128, 64));
-		couponInfTxt.setBounds(222, 317, 135, 14);
-		add(couponInfTxt);
-		
-		refundRBtn = new JRadioButton("Rimborso");
-		refundRBtn.setBounds(135, 102, 78, 23);
-		add(refundRBtn);
-		
-		sellRBtn = new JRadioButton("Vendita");
-		sellRBtn.setBounds(222, 102, 78, 23);
-		add(sellRBtn);
-		sellRBtn.setSelected(true);
-		
-		JLabel lblNewLabel_6 = new JLabel("Tipo");
-		lblNewLabel_6.setBounds(23, 106, 46, 14);
-		add(lblNewLabel_6);
 		
 		prodComboBox = new JComboBox<String>();
 		prodComboBox.setBounds(135, 39, 112, 22);
@@ -146,9 +111,33 @@ public class JPanelMarket extends JPanel {
 		dateComboBox.setBounds(135, 72, 112, 22);
 		add(dateComboBox);
 		
-		cancelBtn = new JButton("Annulla Transazione");
-		cancelBtn.setBounds(367, 363, 146, 23);
-		add(cancelBtn);
+		btnAnnulla = new JButton("Annulla Transazione");
+		btnAnnulla.setBounds(387, 358, 146, 23);
+		add(btnAnnulla);
+		
+		lblNewLabel_3_2 = new JLabel("Prezzo");
+		lblNewLabel_3_2.setBounds(23, 106, 102, 14);
+		add(lblNewLabel_3_2);
+		
+		textField = new JTextField();
+		textField.setEditable(false);
+		textField.setColumns(10);
+		textField.setBounds(135, 105, 287, 20);
+		add(textField);
+		
+		textField_1 = new JTextField();
+		textField_1.setEditable(false);
+		textField_1.setColumns(10);
+		textField_1.setBounds(135, 136, 287, 20);
+		add(textField_1);
+		
+		lblNewLabel_3_3 = new JLabel("Nome del Fornitore");
+		lblNewLabel_3_3.setBounds(23, 137, 102, 14);
+		add(lblNewLabel_3_3);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Nuovo Prodotto");
+		rdbtnNewRadioButton.setBounds(432, 72, 109, 23);
+		add(rdbtnNewRadioButton);
 		
 	}
 
@@ -209,20 +198,6 @@ public class JPanelMarket extends JPanel {
 	}
 
 	/**
-	 * @return the couponTxtField
-	 */
-	public JTextField getCouponTxtField() {
-		return couponTxtField;
-	}
-
-	/**
-	 * @param couponTxtField the couponTxtField to set
-	 */
-	public void setCouponTxtField(JTextField couponTxtField) {
-		this.couponTxtField = couponTxtField;
-	}
-
-	/**
 	 * @return the nProductSpin
 	 */
 	public JSpinner getnProductSpin() {
@@ -278,19 +253,6 @@ public class JPanelMarket extends JPanel {
 		this.doTransactionBtn = doTransactionBtn;
 	}
 
-	/**
-	 * @return the addCouponBtn
-	 */
-	public JButton getAddCouponBtn() {
-		return addCouponBtn;
-	}
-
-	/**
-	 * @param addCouponBtn the addCouponBtn to set
-	 */
-	public void setAddCouponBtn(JButton addCouponBtn) {
-		this.addCouponBtn = addCouponBtn;
-	}
 
 	/**
 	 * @return the totalTxt
@@ -307,48 +269,6 @@ public class JPanelMarket extends JPanel {
 	}
 
 	/**
-	 * @return the couponInfTxt
-	 */
-	public JLabel getCouponInfTxt() {
-		return couponInfTxt;
-	}
-
-	/**
-	 * @param couponInfTxt the couponInfTxt to set
-	 */
-	public void setCouponInfTxt(JLabel couponInfTxt) {
-		this.couponInfTxt = couponInfTxt;
-	}
-
-	/**
-	 * @return the sellRBtn
-	 */
-	public JRadioButton getSellRBtn() {
-		return sellRBtn;
-	}
-
-	/**
-	 * @param sellRBtn the sellRBtn to set
-	 */
-	public void setSellRBtn(JRadioButton sellRBtn) {
-		this.sellRBtn = sellRBtn;
-	}
-
-	/**
-	 * @return the refundRBtn
-	 */
-	public JRadioButton getRefundRBtn() {
-		return refundRBtn;
-	}
-
-	/**
-	 * @param refundRBtn the refundRBtn to set
-	 */
-	public void setRefundRBtn(JRadioButton refundRBtn) {
-		this.refundRBtn = refundRBtn;
-	}
-	
-	/**
 	 * @return the searchBtnS
 	 */
 	public JButton getSearchBtnS() {
@@ -360,20 +280,6 @@ public class JPanelMarket extends JPanel {
 	 */
 	public void setSearchBtnS(JButton searchBtnS) {
 		this.searchBtnS = searchBtnS;
-	}
-	
-	/**
-	 * @return the cancelBtn
-	 */
-	public JButton getCancelBtn() {
-		return cancelBtn;
-	}
-
-	/**
-	 * @param cancelBtn the cancelBtn to set
-	 */
-	public void setCancelBtn(JButton cancelBtn) {
-		this.cancelBtn = cancelBtn;
 	}
 }
 

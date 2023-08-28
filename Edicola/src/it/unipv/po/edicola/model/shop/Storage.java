@@ -27,7 +27,7 @@ public class Storage implements ILocation {
 	 * @throws ProductNotFoundException
 	 */
 	@Override
-	public void moveProductTo(ILocation destination, IProduct product, Integer quantity) 
+	public void moveProduct(ILocation destination, IProduct product, Integer quantity) 
 			throws ProductNotFoundException, IllegalArgumentException {
 		try {
 			if (quantity <= products.get(product)) {
@@ -70,7 +70,7 @@ public class Storage implements ILocation {
 			return true;
 		} 
 		products.remove(product);
-		return false;
+		return true;
 	}
 	
 	/**
@@ -100,6 +100,7 @@ public class Storage implements ILocation {
 	/**
 	 * @param products da settare
 	 */
+	@Override
 	public void setProducts(Hashtable<IProduct, Integer> products) {
 		this.products = products;
 	}

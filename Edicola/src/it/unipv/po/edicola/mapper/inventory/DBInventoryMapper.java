@@ -46,7 +46,7 @@ public class DBInventoryMapper implements IInventoryMapper {
 			while (rsStorage.next()) {
 				ILocation temp = new Storage(rsStorage.getString("storage_id"));
 				String query2 =
-						  "SELECT prize, products.product_id, name_product, quantity, storage_id, publication, periodicity "
+						  "SELECT prize, products.product_id, name_product, quantity, publication, periodicity "
 						+ "FROM inventory JOIN products ON inventory.product_id = products.product_id "
 						+ "WHERE storage_id like " + "'"+rsStorage.getString("storage_id")+"'";
 				statement2 = connection.createStatement();
@@ -107,7 +107,6 @@ public class DBInventoryMapper implements IInventoryMapper {
 			String query = 
 					"UPDATE storages "
 					+ "SET storage_id = '" + name + "'"
-					+ "SET priority = " + priority
 					+ "WHERE storage_id like '" + location.getName()+"'";
 			
 			statement.executeUpdate(query);
@@ -124,9 +123,14 @@ public class DBInventoryMapper implements IInventoryMapper {
 		try {
 			Statement statement = connection.createStatement();
 			String query = 
-					"UPDATE inventory "
-					+ "SET quantity = " + location.getProducts().get(product) + quantity;
+					  " UPDATE inventory"
+					+ " SET quantity = " + location.getProducts().get(product) + quantity
+					+ " WHERE product_id = " + product.getIdProduct() 
+					+ " AND storage_id LIKE '" + location.getName() + "'";
 			
+			System.out.println(location.getProducts().get(product) + quantity);
+			System.out.println(product.getIdProduct());
+			System.out.println(location.getName() );
 			statement.executeUpdate(query);
 			
 		} catch (Exception e) {
