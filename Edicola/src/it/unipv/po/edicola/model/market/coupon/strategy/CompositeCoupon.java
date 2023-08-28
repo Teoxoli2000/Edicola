@@ -50,7 +50,6 @@ public class CompositeCoupon extends Coupon {
 			try {
 				c.useCoupon(payment);
 			} catch (Exception e) {
-				e.printStackTrace();
 				throw new CouponNotValidException();
 			}
 		}

@@ -1,19 +1,18 @@
-package it.unipv.po.edicola.model.market.coupon.factory;
+package it.unipv.po.edicola.model.market.coupon;
 
 import java.time.LocalDate;
 import java.util.Collection;
 
-import it.unipv.po.edicola.model.market.coupon.ICoupon;
 import it.unipv.po.edicola.model.market.coupon.strategy.AlwaysValidCoupon;
+import it.unipv.po.edicola.model.market.coupon.strategy.CirculationCoupon;
 import it.unipv.po.edicola.model.market.coupon.strategy.CompositeCoupon;
 import it.unipv.po.edicola.model.market.coupon.strategy.PeriodValidCoupon;
-import it.unipv.po.edicola.model.market.coupon.strategy.SingleUseCoupon;
 import it.unipv.po.edicola.model.market.coupon.strategy.SingleProductCoupon;
 import it.unipv.po.edicola.model.product.IProduct;
 
 
 
-public class FactoryCoupon implements IFactoryCoupon {
+public class FactoryCoupon {
 	private static FactoryCoupon instanceFactory;
 	
 	private FactoryCoupon() {
@@ -26,12 +25,12 @@ public class FactoryCoupon implements IFactoryCoupon {
 		return instanceFactory;
 	}
 	
-	@Override
+	
 	public ICoupon createCoupon(String CouponId, Double discount, String description) {
 		return new AlwaysValidCoupon(CouponId, discount, description);
 	}
 	
-	@Override
+	
 	public ICoupon addValidProducts(ICoupon c, Collection<IProduct> products) {
 		if (products == null)
 			return c;
@@ -44,7 +43,7 @@ public class FactoryCoupon implements IFactoryCoupon {
 		return result;
 	}
 	
-	@Override
+	
 	public ICoupon addValidPeriod(ICoupon c, LocalDate expire, LocalDate begin) {
 		if (expire == null && begin == null)
 			return c;
@@ -60,15 +59,11 @@ public class FactoryCoupon implements IFactoryCoupon {
 		return result;
 	}
 	
-	@Override
-	public ICoupon addSingleUse(ICoupon c, String code) {
-		if (code == null)
-			return c;
-		
+	public ICoupon addCirculationCoupon(ICoupon c, String cCouponId) {
 		CompositeCoupon result = new CompositeCoupon(c.getCouponId(), c.getDiscount(), c.getDescription());
 		result.addCoupon(c);
+		result.addCoupon(new CirculationCoupon(cCouponId));
 		
-		result.addCoupon(new SingleUseCoupon(code));
 		return result;
 	}
 	

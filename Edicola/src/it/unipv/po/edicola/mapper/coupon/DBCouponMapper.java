@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.HashSet;
 
+import it.unipv.po.edicola.model.market.coupon.FactoryCoupon;
 import it.unipv.po.edicola.model.market.coupon.ICoupon;
-import it.unipv.po.edicola.model.market.coupon.factory.FactoryCoupon;
 import it.unipv.po.edicola.model.product.IProduct;
 import it.unipv.po.edicola.model.product.factory.ProductFactory;
 import it.unipv.po.edicola.util.database.DBConnection;
@@ -99,32 +99,30 @@ public class DBCouponMapper implements ICouponMapper{
 		return true;
 	}
 
-	@Override
-	public ICoupon getSingleUseCoupon(String code) {
-		ICoupon result = null;
+	
+	public Boolean isNotUsedCoupon(String code) {
 		try {
 			Statement statement = connection.createStatement();
 			String query = 
-					"SELECT coupon_id, expire_coupon, begin_coupon, discount, description_coupon "
-							+ "FROM circulation_coupons JOIN coupons ON circulation_coupons.coupon_id = coupons.coupon_id "
-							+ "WHERE coupon_code = " + code;
+				"SELECT * "
+				+ "FROM circulation_coupons"
+				+ "WHERE coupon_code = " + code;
 
 			ResultSet rs = statement.executeQuery(query);
 
-			while(rs.next()) {
-				result = createCoupon(rs);
-				result = FactoryCoupon.getInstanceFactory().addSingleUse(result, code);
+			if (rs.next()) {
+				return true;
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
-		return result;
+		return true;
 	}
 
 	@Override
-	public Boolean addSingleUseCoupon(ICoupon c, String code) {
+	public Boolean addCirculationCoupon(ICoupon c, String code) {
 		try {
 			Statement statement = connection.createStatement();
 
@@ -141,7 +139,7 @@ public class DBCouponMapper implements ICouponMapper{
 	}
 
 	@Override
-	public Boolean removeSingleUseCoupon(String code) {
+	public Boolean removeUsedCoupon(String code) {
 		if(code.contains("%"))
 			return false;
 

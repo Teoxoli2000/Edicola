@@ -9,8 +9,6 @@ import it.unipv.po.edicola.model.shop.INewsstand;
 
 
 public interface IPayment {
-	public void changeNewsstandInventory(INewsstand newsstand, ILocation location) 
-			throws LocationNotFoundException, ProductNotFoundException;
 	public void changeNewsstandAccounting(INewsstand newsstand);
 
 	public Double calculateTotal();
@@ -26,5 +24,6 @@ public interface IPayment {
 	
 	public LocalDateTime getDateTime();
 	public void setDateTime(LocalDateTime dateTime);
+	void changeNewsstandInventory(INewsstand old, INewsstand now);
 	
 }

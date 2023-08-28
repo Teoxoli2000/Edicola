@@ -1,4 +1,4 @@
-package it.unipv.po.edicola.model.accounting;
+package it.unipv.po.edicola.model.market;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -25,5 +25,7 @@ public interface IAccounting {
 	public void setExits(HashSet<IPayment> exits);
 	public HashSet<IPayment> getRefunds();
 	public void setRefunds(HashSet<IPayment> refunds);
+	
+	public Integer genereteIdPayment();
 
 }

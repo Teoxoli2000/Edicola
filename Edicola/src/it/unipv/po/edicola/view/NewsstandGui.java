@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unipv.po.edicola.view.frame.JFrameAccounting;
+import it.unipv.po.edicola.view.frame.JFrameBuy;
 import it.unipv.po.edicola.view.frame.JFrameCoupon;
 import it.unipv.po.edicola.view.frame.JFrameInventory;
 import it.unipv.po.edicola.view.frame.JFrameMoveProduct;
@@ -32,6 +33,9 @@ public class NewsstandGui {
 	private JButton btnSupplier;
 	private JButton btnMember;
 	private JButton btnMoveProduct;
+	private JButton btnBuy;
+
+
 
 	/**
 	 * Create the application.
@@ -59,20 +63,6 @@ public class NewsstandGui {
 		panel.setLayout(gbl_panel);
 		
 		btnSell = new JButton("Transazioni");
-		btnSell.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							JFrameMarket frame = new JFrameMarket();
-							frame.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
 		GridBagConstraints gbc_btnSell = new GridBagConstraints();
 		gbc_btnSell.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnSell.insets = new Insets(0, 0, 5, 0);
@@ -178,26 +168,20 @@ public class NewsstandGui {
 		panel.add(btnMember, gbc_btnMember);
 		
 		btnInventory = new JButton("Inventario");
-		btnInventory.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							JFrameInventory frame = new JFrameInventory();
-							frame.setVisible(true);
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-				});
-			}
-		});
 		GridBagConstraints gbc_btnInventory = new GridBagConstraints();
 		gbc_btnInventory.fill = GridBagConstraints.HORIZONTAL;
 		gbc_btnInventory.insets = new Insets(0, 0, 5, 0);
 		gbc_btnInventory.gridx = 0;
 		gbc_btnInventory.gridy = 6;
 		panel.add(btnInventory, gbc_btnInventory);
+		
+		btnBuy = new JButton("Rifornisci");
+		GridBagConstraints gbc_btnRifornisci = new GridBagConstraints();
+		gbc_btnRifornisci.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btnRifornisci.insets = new Insets(0, 0, 5, 0);
+		gbc_btnRifornisci.gridx = 0;
+		gbc_btnRifornisci.gridy = 7;
+		panel.add(btnBuy, gbc_btnRifornisci);
 
 	}
 	
@@ -255,6 +239,13 @@ public class NewsstandGui {
 	 */
 	public JButton getBtnMoveProduct() {
 		return btnMoveProduct;
+	}
+	
+	/**
+	 * @return the btnBuy
+	 */
+	public JButton getBtnBuy() {
+		return btnBuy;
 	}
 
 }

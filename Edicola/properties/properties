@@ -1,4 +1,4 @@
-payment.class=it.unipv.po.edicola.model.market.payment.Sell
+payment.class=it.unipv.po.edicola.model.market.payment.
 
 newsstand.generate.class=it.unipv.po.edicola.model.shop.factory.NewsstandFactory
 

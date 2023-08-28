@@ -2,18 +2,24 @@ package it.unipv.po.edicola.model.shop;
 
 import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Iterator;
 
-import it.unipv.po.edicola.model.accounting.IAccounting;
 import it.unipv.po.edicola.model.exception.ProductNotFoundException;
+import it.unipv.po.edicola.model.market.Accounting;
+import it.unipv.po.edicola.model.market.IAccounting;
+import it.unipv.po.edicola.model.market.payment.IPayment;
 import it.unipv.po.edicola.model.member.MemberBook;
 import it.unipv.po.edicola.model.product.IProduct;
+import it.unipv.po.edicola.model.product.magazine.IMagazine;
+import it.unipv.po.edicola.model.product.magazine.Magazine;
 import it.unipv.po.edicola.model.supplier.SupplierBook;
 
 
 /**
  * Newwstand è la classe che rappresenta l'intera edicola
  */
-public class Newsstand implements INewsstand {
+public class Newsstand implements INewsstand{
+	
 	private HashSet<ILocation> wards; 	// ambienti 
 	private ILocation inventory;		// inventario
 	private IAccounting accounting; 	// contabilità
@@ -55,6 +61,7 @@ public class Newsstand implements INewsstand {
 		return result;
 	}
 	
+	
 	/**
 	 * ricerca di un prodotto all'interno dell'edicola tramite il nome del prodotto
 	 * @param nameProduct nome del prodotto da cercare
@@ -63,11 +70,46 @@ public class Newsstand implements INewsstand {
 	 * @throws nel caso in cui non è presente il prodotto cercato
 	 */
 	public Hashtable<ILocation, IProduct> searchProductInStore(String nameProduct) throws ProductNotFoundException {
-		Hashtable<ILocation,IProduct> result = new Hashtable<ILocation,IProduct>();
+		Hashtable<ILocation, IProduct> result = new Hashtable<ILocation,IProduct>();
 		
 		for(ILocation l: wards) {
 			for(IProduct p: l.getProducts().keySet()) {
-				if(p.getName() == nameProduct)
+				if(p.getName().equalsIgnoreCase(nameProduct)) {
+					result.put(l, p);
+				}
+			}
+		}
+		
+		if (result.isEmpty()) {
+			throw new ProductNotFoundException();
+		}
+		
+		return result;
+	}
+	
+	public Hashtable<ILocation, IMagazine> searchMagazineInStore(String nameProduct) throws ProductNotFoundException {
+		Hashtable<ILocation, IMagazine> result = new Hashtable<ILocation,IMagazine>();
+		
+		for(ILocation l: wards) {
+			for(IProduct p: l.getProducts().keySet()) {
+				if(p.getName().equalsIgnoreCase(nameProduct)) {
+					IMagazine magazine = (Magazine) p;
+					result.put(l, magazine);
+				}
+			}
+		}
+		if (result.isEmpty()) {
+			throw new ProductNotFoundException();
+		}
+		
+		return result;
+	}
+	public Hashtable<ILocation, IProduct> getProductInStore(Integer id) throws ProductNotFoundException {
+		Hashtable<ILocation,IProduct> result = new Hashtable<ILocation,IProduct>();
+		
+		for (ILocation l: wards) {
+			for (IProduct p: l.getProducts().keySet()) {
+				if(p.getIdProduct() == id)
 					result.put(l, p);
 			}
 		}
@@ -78,6 +120,24 @@ public class Newsstand implements INewsstand {
 		
 		return result;
 	}
+	
+	public Hashtable<ILocation, IProduct> getProductInStore(String name) throws ProductNotFoundException {
+		Hashtable<ILocation,IProduct> result = new Hashtable<ILocation,IProduct>();
+		
+		for(ILocation l: wards) {
+			for(IProduct p: l.getProducts().keySet()) {
+				if(p.getName().equalsIgnoreCase(name))
+					result.put(l, p);
+			}
+		}
+		
+		if (result.isEmpty()) {
+			throw new ProductNotFoundException();
+		}
+		
+		return result;
+	}
+	
 	
 	/**
 	 * @param w ambiente da aggiungere a wards
@@ -104,8 +164,7 @@ public class Newsstand implements INewsstand {
 				temp.addProduct(product, l.getProducts().get(product));
 			}
 		}
-		inventory.getProducts().putAll(temp.getProducts());
-		return inventory;
+		return temp;
 	}
 	
 	/**
@@ -171,5 +230,5 @@ public class Newsstand implements INewsstand {
 	public void setMemberBook(MemberBook book) {
 		this.memberBook = book;
 	}
-	
+
 }

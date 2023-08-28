@@ -1,8 +1,7 @@
-package it.unipv.po.edicola.model.market.payment.factory;
+package it.unipv.po.edicola.model.market.payment;
 
 import java.util.Properties;
 
-import it.unipv.po.edicola.model.market.payment.IPayment;
 import it.unipv.po.edicola.util.properties.PropertiesSingleton;
 
 

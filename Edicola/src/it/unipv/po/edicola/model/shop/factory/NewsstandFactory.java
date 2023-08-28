@@ -1,6 +1,7 @@
 package it.unipv.po.edicola.model.shop.factory;
 
 import it.unipv.po.edicola.mapper.MapperFacade;
+import it.unipv.po.edicola.model.market.Accounting;
 import it.unipv.po.edicola.model.member.MemberBook;
 import it.unipv.po.edicola.model.shop.INewsstand;
 import it.unipv.po.edicola.model.shop.Newsstand;
@@ -22,6 +23,7 @@ public class NewsstandFactory implements INewsstandFactory {
 		Newsstand result = new Newsstand();
 		MapperFacade mapper = MapperFacade.getInstance();
 		
+		result.setAccounting(new Accounting());
 		result.setWards(mapper.getInventory());
 		result.setMemberBook(new MemberBook(mapper.getAllMembers()));
 		
